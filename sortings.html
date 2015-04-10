@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="vendor/knockout.js"></script>
+    <script type="text/javascript" src="vendor/underscore.js"></script>
+    <script type="text/javascript" src="vendor/jquery.js"></script>
+
+    <script type="text/javascript" src="data.js"></script>
+    <script type="text/javascript" src="calc.js"></script>
+    <script type="text/javascript" src="calc_model.js"></script>
+</head>
+<body>
+
+<div >
+    <h1>Available Gear</h1>
+    <select multiple size="30" data-bind="options: helmet,
+                                            selectedOptions: c_helmet,
+                                            optionsText: 'name'" >
+
+    </select>
+    <select multiple size="30" data-bind="options: chest,
+                                            selectedOptions: c_chest,
+                                            optionsText: 'name'">
+
+    </select>
+    <select multiple size="30" data-bind="options: legs,
+                                            selectedOptions: c_legs,
+                                            optionsText: 'name'">
+
+    </select>
+    <select multiple size="30" data-bind="options: gloves,
+                                            selectedOptions: c_gloves,
+                                            optionsText: 'name'">
+
+    </select>
+</div>
+
+<div>
+    <label>Implementation</label>
+    <select data-bind="options: implementations,
+                                value: implementation,
+                                optionsText: 'label'">
+
+    </select>
+</div>
+
+    <table class="table table-bordered table-striped" >
+        <thead>
+        <tr>
+            <th>name</th>
+            <th>physical</th>
+            <th>blunt</th>
+            <th>thrust</th>
+            <th>blood</th>
+            <th>arcane</th>
+            <th>fire</th>
+            <th>bolt</th>
+            <th>s poison</th>
+            <th>r poison</th>
+            <th>frenzy</th>
+            <th>beast</th>
+        </tr>
+        </thead>
+        <tbody data-bind="with: calc_result()">
+            <tr data-bind="foreach: $root.all_attrs">
+                <td data-bind="text: $parent.helmet[$data]"></td>
+            </tr>
+            <tr data-bind="foreach: $root.all_attrs">
+                <td data-bind="text: $parent.chest[$data]"></td>
+            </tr>
+            <tr data-bind="foreach: $root.all_attrs">
+                <td data-bind="text: $parent.legs[$data]"></td>
+            </tr>
+            <tr data-bind="foreach: $root.all_attrs">
+                <td data-bind="text: $parent.gloves[$data]"></td>
+            </tr>
+            <tr data-bind="foreach: $root.all_attrs">
+                <td data-bind="text: $root.calc_total()[$data]"></td>
+            </tr>
+        </tbody>
+
+
+    </table>
+
+
+</body>
+</html>
